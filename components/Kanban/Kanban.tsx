@@ -1,7 +1,7 @@
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
 import { pink, green } from "../Timer/Timer";
-import { MdAddCircle } from "react-icons/md";
+import { MdAddCircle, MdDelete } from "react-icons/md";
 import { Modal, Card as CardMUI, Button } from "@mui/material";
 import Card from "./Card";
 import uuid from "react-uuid";
@@ -67,15 +67,28 @@ const Kanban = () => {
 
   const addCurrentTask = () => {
     let newData = data;
-    const index = kanbanData.findIndex((object: any) => {
+    const index = data.findIndex((object: any) => {
       return object.id === currentTaskToAdd.columnID;
     });
     newData[index].tasks.push(currentTaskToAdd);
     localStorage.setItem("data", JSON.stringify(newData));
     setData(newData);
     resetData();
-    console.log(data);
   };
+
+  const deleteTask = ({taskID, columnID}: any) => {
+    let newData = data;
+    const index = data.findIndex((object: any) => {
+      return object.id === columnID;
+    });
+    const taskIndex = newData[index].tasks.findIndex((object: any) => {
+      return object.id === taskID;
+    })
+    newData[index].tasks.splice(index, 1);
+    localStorage.setItem("data", JSON.stringify(newData));
+    setData(newData);
+    resetData();
+  }
 
   const resetData = () => {
     setCurrentTaskToAdd({
@@ -92,7 +105,7 @@ const Kanban = () => {
   useEffect(() => {
     console.log(kanbanData);
     setTimeout(() => {
-      setData(JSON.parse(localStorage.getItem("data")));
+      setData(JSON.parse(localStorage.getItem("data")) ?? kanbanData);
       setwinReady(true);
     }, 300);
     // setData(kanbanData);
@@ -132,7 +145,10 @@ const Kanban = () => {
                                 opacity: snapshot.isDragging ? "0.5" : "1",
                               }}
                             >
-                              <Card>{task.title}</Card>
+                              <Card>{task.title}
+                              <MdDelete onClick={() => { deleteTask({taskID: task.id, columnID: section.id})}}
+                              className="text-pink-600 w-12 h-12 m-2 hover:cursor-pointer" /></Card>
+                              
                             </div>
                           )}
                         </Draggable>
@@ -165,7 +181,7 @@ const Kanban = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <CardMUI className="w-1/6 text-center" variant="outlined">
+        <CardMUI className="text-center" variant="outlined">
           <div className="flex flex-col items-center m-6">
             <div>
               <label
