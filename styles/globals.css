@@ -1,3 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --primary: #46B3A5,
+  --secondary: #FE4773,
+  --tertiary: #F6D68D,
+}
+
 html,
 body {
   padding: 0;
@@ -13,4 +23,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.CircularProgressbar-text {
+  transform: translate(-15px, 5px);
 }
