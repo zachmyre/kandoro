@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Timer from "../components/Timer/Timer";
+import Kanban from "../components/Kanban/Kanban";
 import Settings from "../components/Timer/Settings";
 import SettingsContext from "../components/Timer/SettingsContext";
 import { useState } from "react";
@@ -11,8 +12,8 @@ const Home: NextPage = () => {
   const [breakMinutes, setBreakMinutes] = useState(15);
 
   return (
-    <main className="w-screen h-screen bg-gray-900">
-      <div className="flex flex-col items-center justify-center h-full w-full">
+    <main className="h-screen bg-gray-900">
+      <div className="flex flex-col items-center justify-center w-full">
         <div className="w-1/2 flex justify-between items-center">
           <h1 className="text-3xl font-bold text-white tracking-wider">
             Kandoro
@@ -24,7 +25,7 @@ const Home: NextPage = () => {
             Promote Productivity.
           </h2>
         </div>
-        <div className="w-1/3 h-full">
+        <div>
           <SettingsContext.Provider
             value={{
               showSettings,
@@ -40,7 +41,10 @@ const Home: NextPage = () => {
                 <Settings />
               </div>
             ) : (
-              <Timer />
+              <div className="flex flex-col space-y-4">
+                <Timer />
+                <Kanban />
+              </div>
             )}
           </SettingsContext.Provider>
         </div>

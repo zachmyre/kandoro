@@ -28,3 +28,12 @@ a {
 .CircularProgressbar-text {
   transform: translate(-15px, 5px);
 }
+
+.kanban {
+  display: flex;
+  align-items: flex-start;
+}
+
+.card:last-child {
+  border-radius: 0 0 0.375rem 0.375rem !important;
+}

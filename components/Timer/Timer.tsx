@@ -63,10 +63,6 @@ export const Timer = () => {
         return switchMode();
       }
 
-      const timeout = setTimeout(() => {
-        console.log("keeping timer alive");
-      }, 1000);
-
       tick();
     }, 1000);
 
@@ -85,7 +81,7 @@ export const Timer = () => {
 
   return (
     <div
-      className={`bg-gray-800 rounded-xl p-4 shadow-2xl my-4 border-2
+      className={`m-auto bg-gray-800 rounded-xl p-4 shadow-2xl my-4 border-2 w-2/5
         ${
           mode === "work"
             ? "shadow-green-400 border-green-200"
