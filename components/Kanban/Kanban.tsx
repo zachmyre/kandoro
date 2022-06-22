@@ -29,12 +29,12 @@ const Kanban = () => {
   const [data, setData] = useState(kanbanData);
   const [showTaskModal, setShowTaskModal] = useState({
     open: false,
-    columnID: null,
+    columnID: '',
   });
   const [currentTaskToAdd, setCurrentTaskToAdd] = useState({
-    id: null,
-    title: null,
-    columnID: null,
+    id: '',
+    title: '',
+    columnID: '',
   });
 
   const onDragEnd = (result: any) => {
@@ -92,13 +92,13 @@ const Kanban = () => {
 
   const resetData = () => {
     setCurrentTaskToAdd({
-      id: null,
-      title: null,
-      columnID: null,
+      id: '',
+      title: '',
+      columnID: '',
     });
     setShowTaskModal({
       open: false,
-      columnID: null,
+      columnID: '',
     });
   };
 
@@ -218,15 +218,7 @@ const Kanban = () => {
               </button>
               <button
                 onClick={() => {
-                  setCurrentTaskToAdd({
-                    id: null,
-                    title: null,
-                    columnID: null,
-                  });
-                  setShowTaskModal({
-                    open: false,
-                    columnID: null,
-                  });
+                 resetData();
                 }}
                 className="my-2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded"
               >

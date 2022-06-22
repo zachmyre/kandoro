@@ -4,7 +4,7 @@ import Slider from "@mui/material/Slider";
 import { pink, green } from "./Timer";
 
 export const Settings = () => {
-  const settingsInfo = useContext(SettingsContext);
+  const settingsInfo: any = useContext(SettingsContext);
   return (
     <div className="text-center space-y-4">
       <label className="text-2xl font-bold" style={{ color: pink }}>

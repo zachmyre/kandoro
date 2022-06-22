@@ -8,17 +8,10 @@ import SettingsContext from "./SettingsContext";
 export const pink = "#DB2777";
 export const green = "#4aec8c";
 
-export interface Settings {
-  breakMinutes: Number;
-  workMinutes: Number;
-  showSettings: Boolean;
-  setBreakMinutes: Function;
-  setWorkMinutes: Function;
-  setShowSettings: Function;
-}
+
 
 export const Timer = () => {
-  const settingsInfo: Settings | Object = useContext(SettingsContext);
+  const settingsInfo: any = useContext(SettingsContext);
 
   const [isPaused, setIsPaused] = useState(true);
   const [mode, setMode] = useState("work"); // work/break/null
@@ -76,8 +69,8 @@ export const Timer = () => {
   const percentage = Math.round((secondsLeft / totalSeconds) * 100);
 
   const minutes = Math.floor(secondsLeft / 60);
-  let seconds = secondsLeft % 60;
-  if (seconds < 10) seconds = "0" + seconds;
+  let seconds = (secondsLeft % 60).toString();
+  if (parseInt(seconds) < 10) seconds = "0" + seconds;
 
   return (
     <div
