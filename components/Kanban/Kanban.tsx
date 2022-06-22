@@ -105,7 +105,9 @@ const Kanban = () => {
   useEffect(() => {
     console.log(kanbanData);
     setTimeout(() => {
-      setData(JSON.parse(localStorage.getItem("data") || kanbanData));
+      const taskData = localStorage.getItem('data');
+      const parsedData = taskData !== null ? JSON.parse(taskData) : kanbanData;
+      setData(parsedData);
       setwinReady(true);
     }, 300);
     // setData(kanbanData);
