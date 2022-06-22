@@ -4,7 +4,7 @@ import { pink, green } from "../Timer/Timer";
 import { MdAddCircle, MdDelete } from "react-icons/md";
 import { Modal, Card as CardMUI, Button } from "@mui/material";
 import Card from "./Card";
-import uuid from "react-uuid";
+import { v4 as uuid } from 'uuid';
 
 const Kanban = () => {
   let kanbanData: any = [
@@ -84,7 +84,7 @@ const Kanban = () => {
     const taskIndex = newData[index].tasks.findIndex((object: any) => {
       return object.id === taskID;
     })
-    newData[index].tasks.splice(index, 1);
+    newData[index].tasks.splice(taskIndex, 1);
     localStorage.setItem("data", JSON.stringify(newData));
     setData(newData);
     resetData();
